@@ -2,6 +2,7 @@
 # Licensed under the MIT license.
 
 from .adapters.llama_adapter import LlamaModelAdapter
+from .adapters.llama3_adapter import Llama3ModelAdapter
 from .adapters.opt_adapter import OPTModelAdapter
 from .adapters.phi2_adapter import Phi2ModelAdapter
 from .adapters.phi3_adapter import Phi3ModelAdapter

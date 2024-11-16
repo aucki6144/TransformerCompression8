@@ -151,6 +151,7 @@ def slicing_main(args: argparse.Namespace) -> None:
         )
 
     model = model_adapter.model
+    model.to(config.device)
 
     def reset_model_device() -> None:
         if args.distribute_model:
