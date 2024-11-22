@@ -203,8 +203,6 @@ class Llama3ModelAdapter(ModelAdapter):
             token: str | bool | None = None,
     ) -> ModelAdapter | None:
         if not model_name.startswith("meta-llama/Llama-3"):
-            print("HERE")
-
             return None
 
         model = LlamaForCausalLM.from_pretrained(
@@ -226,6 +224,15 @@ class Llama3ModelAdapter(ModelAdapter):
         if not model_name.startswith("meta-llama/Llama-3"):
             return None
 
-        model = LlamaForCausalLM.from_pretrained(model_path, torch_dtype=dtype)
-        model.config.torch_dtype = dtype
-        return cls(model)
+        class UninitializedLlamaForCausalLM(LlamaForCausalLM):
+            def _init_weights(self, _) -> None:
+                # Prevent weight initialization
+                pass
+
+        config = LlamaConfig.from_pretrained(
+            model_path, torch_dtype=dtype, token=token, local_files_only=local_files_only
+        )
+        model = UninitializedLlamaForCausalLM(config)
+        model = model.to(dtype=dtype)
+
+        return Llama3ModelAdapter(model)
