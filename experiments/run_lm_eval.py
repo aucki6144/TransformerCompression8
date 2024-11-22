@@ -31,7 +31,9 @@ TASK_METRIC_MAP = {
     "mmlu_global_facts": "acc,none",
     "arc_challenge": "acc_norm,none",
     "arc_easy": "acc_norm,none",
+    "boolq": "acc,none",
     "hellaswag": "acc_norm,none",
+    "openbookqa": "acc_norm,none",
     "piqa": "acc_norm,none",
     "winogrande": "acc,none",
 }
