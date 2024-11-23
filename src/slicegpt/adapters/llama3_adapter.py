@@ -23,6 +23,8 @@ class CompressedLlama3DecoderLayer(LlamaDecoderLayer):
         past_key_value: tuple[torch.Tensor] | None = None,
         output_attentions: bool | None = False,
         use_cache: bool | None = False,
+        cache_position: Optional[torch.LongTensor] = None,
+        position_embeddings: Optional[Tuple[torch.Tensor, torch.Tensor]] = None,
         **kwargs,
     ) -> tuple:
         residual = hidden_states
@@ -36,6 +38,8 @@ class CompressedLlama3DecoderLayer(LlamaDecoderLayer):
             past_key_value=past_key_value,
             output_attentions=output_attentions,
             use_cache=use_cache,
+            cache_position=cache_position,
+            position_embeddings=position_embeddings,
             **kwargs,
         )
 
