@@ -4,14 +4,15 @@
 # Note:
 
 from typing import Optional, Tuple, Sequence
-
 from torch import Tensor, FloatTensor
-from torch.nn import Linear, Module
+
 from transformers import MixtralForCausalLM, PretrainedConfig, MixtralConfig
 from transformers.models.mixtral.modeling_mixtral import MixtralDecoderLayer, MixtralRMSNorm
+from slicegpt.model_adapter import LayerAdapter, ModelAdapter
+from torch.nn import Linear, Module
 import torch
 
-from slicegpt import LayerAdapter, ModelAdapter
+
 
 
 class CompressedMixtralDecoderLayer(MixtralDecoderLayer):
